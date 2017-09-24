@@ -16,10 +16,14 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from werobot.contrib.django import make_view
-
 from robot import robot
-
+from . import personal
+from . import myapp
+from . import checkin
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^robot/', make_view(robot)),
+    url(r'^index/', myapp.index),
+    url(r'^personal/', personal.personal),
+    url(r'^checkin/', checkin.checkin),
 ]
