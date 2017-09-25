@@ -35,7 +35,13 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
 )
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
+    'PAGE_SIZE': 10
+}
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -49,6 +55,12 @@ MIDDLEWARE_CLASSES = (
 )
 
 ROOT_URLCONF = 'untitled.urls'
+
+APPID = 'wx3fcb154832732b75'
+
+APPSECRET = '6961c68cc55aad7fc460a03fb08b281c'
+
+HOST = ''
 
 TEMPLATES = [
     {
@@ -96,5 +108,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "untitled/static/"),
-    ]
+]
 STATIC_URL = '/static/'

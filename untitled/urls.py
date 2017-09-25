@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 """untitled URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -20,10 +21,42 @@ from robot import robot
 from . import personal
 from . import myapp
 from . import checkin
+from django.contrib.auth.models import User
+from rest_framework import routers, serializers, viewsets
+
+# # Serializers定义了API的表现.
+# class UserSerializer(serializers.HyperlinkedModelSerializer):
+#     class Meta:
+#         model = User
+#         fields = ('url', 'username', 'email', 'is_staff')
+# # ViewSets 定义了 视图（view） 的行为.
+# class UserViewSet(viewsets.ModelViewSet):
+#     queryset = User.objects.all()
+#     serializer_class = UserSerializer
+#
+#
+#
+# # Routers 提供了一种简单途径，自动地配置了URL。
+# router = routers.DefaultRouter()
+# router.register(r'users', UserViewSet)
+
+from django.conf.urls import url, include
+from rest_framework import routers
+import views
+
+router = routers.DefaultRouter()
+router.register(r'users', views.UserViewSet)
+router.register(r'groups', views.GroupViewSet)
+
+# 使用自动化URL路由，转配我们的API.
+# 如有额外需要, 我也为可视化API添加了登陆URLs.
+
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^robot/', make_view(robot)),
     url(r'^index/', myapp.index),
     url(r'^personal/', personal.personal),
     url(r'^checkin/', checkin.checkin),
+    url(r'^', include(router.urls)),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
