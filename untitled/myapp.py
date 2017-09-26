@@ -15,6 +15,7 @@ def index(request):
     context['content']=user_info['nickname']
     print user_info
     context['headimgurl'] = user_info['headimgurl']
+
     return render(request, 'personal.html', context)
 
 def getopenid(code):
