@@ -9,7 +9,6 @@ robot = WeRoBot(enable_session=False,
 
 client = robot.client
 
-
 @robot.handler
 def hello(message):
     return 'Hello world'

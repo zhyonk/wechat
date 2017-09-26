@@ -10,4 +10,5 @@ def personal(request):
     context = {}
     context['content'] = "11"
     print robot.client.grant_token()
+    robot1 = robot
     return render(request, 'personal.html', context)
